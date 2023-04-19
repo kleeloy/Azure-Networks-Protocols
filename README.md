@@ -25,11 +25,11 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <h2>High-Level Steps</h2>
 
--Step 1 Observe ICMP Traffic
-- Step 2 Observe SSH Traffic (tcp.port ==22)
+- Step 1 Observe ICMP Traffic
+- Step 2 Observe DNS Traffic
 - Step 3 Observe DHCP Traffic
-- Step 4 Observe DNS Traffic
-- Step 6 Observe RDP Traffic (tcp.port ==3389)
+- Step 4 Observe tcp.port ==22
+- Step 6 Observe tcp.port ==3389
 
 <h2>Actions and Observations</h2>
 
