@@ -15,7 +15,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Microsoft Azure (Virtual Machines/Compute)
 - Remote Desktop
 - Various Command-Line Tools
-- Various Network Protocols (SSH, RDH, DNS, RDP, ICMP)
+- Various Network Protocols (SSH, RDH, DNS, RDP, ICMP, DHCP)
 - Wireshark (Protocol Analyzer)
 
 <h2>Operating Systems Used </h2>
@@ -34,9 +34,9 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <h2>Actions and Observations</h2>
 
 <p>
-<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/ICMP%20TRAFFIC%20OBSERVED%20AZ-LAB2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/Network%20Security%20Group%20AZ-Lab2.png " height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/DENY_ICMP_PING_FROM_ANYWHERE%20AZ-LAB2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/ICMP%20TRAFFIC%20OBSERVED%20AZ-LAB2.png" height="70%" width="70%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/Network%20Security%20Group%20AZ-Lab2.png " height="70%" width="70%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/DENY_ICMP_PING_FROM_ANYWHERE%20AZ-LAB2.png" height="70%" width="70%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
 Opened wireshark on my Windows 10 VM, filtered for ICMP traffic only and observed ping requests and replies within wireshark from the private IP address of the Unbuntu VM. In Powershell we observed a public website (such as www.google.com) and observed the same ping requests and replies within wireshark. When I initiated a perpetual/non-stop ping from my Windows 10 VM to my Ubuntu VM, wireshark was showing non-stop ping requests and replies. I then created an inbound rule in Azure Ubuntu VM to DENY_ICMP_PING_FROM_ANYWHERE_ and observed from wireshark ping activity denying requests.
@@ -44,17 +44,46 @@ Opened wireshark on my Windows 10 VM, filtered for ICMP traffic only and observe
 <br />
 
 <p>
-<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/SSH%20OBSERVATIONS%20AZ-LAB2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/SSH%20OBSERVATIONS%20AZ-LAB2.png" height="70%" width="70%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Filtered wireshark on my Windows 10 VM to SSH. From my Windows 10 VM I "SSH into" my Ubuntu VM (via its private IP address). Once logged into Ubuntu from my Windows 10 VM I typed commands in like: 
+Filtered wireshark on my Windows 10 VM to SSH. From my Windows 10 VM, I "SSH into" my Ubuntu VM (via its private IP address). Once logged into Ubuntu from my Windows 10 VM I typed commands in such as:
+
+```
+$ uname -a 
+pwd
+touch hello.txt
+ls -lasth
+```
+
+To observe SSH traffic spam in wireshark. 
+
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/DHCP%20OBSERVATION%20AZ-LAB2.png" height="70%" width="70%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Filtered wireshark on my Windoes 10 VM to DHCP. DHCP use is to automatically assign IP addresses. From Windows 10 VM I attemot to issue my VM a new IP address with command line:
+
+```
+$ ipconfig /renew
+```
+
+From there a new IP address was issued and traffic spammed on wireshark. 
+
 </p>
 <br />
+
+<p>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/DNS%20OBSERVATION%20AZ-LAB2.png" height="70%" width="70%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Filtered wireshark on my Windows 10 VM to DNS (udp.port ==53), from my Windows 10 VM within the command line:
+
+```
+$ nslookup www.google.com
+nslookup www.disney.com
+```
+To spam traffic within wireshark, watching the DNS server lookup what the IP address were for www.google.com and www.disney.com
