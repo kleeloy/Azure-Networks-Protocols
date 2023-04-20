@@ -34,15 +34,17 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <h2>Actions and Observations</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/ICMP%20TRAFFIC%20OBSERVED%20AZ-LAB2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/Network%20Security%20Group%20AZ-Lab2.png " height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/DENY_ICMP_PING_FROM_ANYWHERE%20AZ-LAB2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Opened wireshark on my Windows 10 VM, filtered for ICMP traffic only and observed ping requests and replies within wireshark from the private IP address of the Unbuntu VM. In Powershell we observed a public website (such as www.google.com) and observed the same ping requests and replies within wireshark. When I initiated a perpetual/non-stop ping from my Windows 10 VM to my Ubuntu VM, wireshark was showing non-stop ping requests and replies. I then created an inbound rule in Azure Ubuntu VM to DENY_ICMP_PING_FROM_ANYWHERE_ and observed from wireshark ping activity denying requests.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src=" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
