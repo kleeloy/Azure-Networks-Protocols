@@ -26,9 +26,9 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <h2>High-Level Steps</h2>
 
 - Step 1 Observe ICMP Traffic
-- Step 2 Observe DNS Traffic
+- Step 2 Observe SSH Traffic (tcp.port ==22)
 - Step 3 Observe DHCP Traffic
-- Step 4 Observe SSH Traffic (tcp.port ==22)
+- Step 4 Observe DNS Traffic
 - Step 6 Observe RDP Traffic (tcp.port ==3389)
 
 <h2>Actions and Observations</h2>
@@ -44,10 +44,10 @@ Opened wireshark on my Windows 10 VM, filtered for ICMP traffic only and observe
 <br />
 
 <p>
-<img src=" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/kleeloy/Azure-Networks-Protocols/blob/main/Diagrams/SSH%20OBSERVATIONS%20AZ-LAB2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Filtered wireshark on my Windows 10 VM to SSH. From my Windows 10 VM I "SSH into" my Ubuntu VM (via its private IP address). Once logged into Ubuntu from my Windows 10 VM I typed commands in like: 
 </p>
 <br />
 
